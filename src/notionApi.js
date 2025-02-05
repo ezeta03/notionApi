@@ -1,16 +1,12 @@
 import axios from 'axios';
 
-const notionApi = axios.create({
-  baseURL: 'https://api.notion.com/v1',
-  headers: {
-    'Authorization': `Bearer ${import.meta.env.VITE_NOTION_API_KEY}`,
-    'Notion-Version': '2022-06-28'
-  }
+const apiClient = axios.create({
+  baseURL: 'http://localhost:3001/api',
 });
 
 export const getDatabase = async (databaseId) => {
   try {
-    const response = await notionApi.get(`/databases/${databaseId}`);
+    const response = await apiClient.get(`/database/${databaseId}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching database:', error);
@@ -18,12 +14,12 @@ export const getDatabase = async (databaseId) => {
   }
 };
 
-export const getPage = async (pageId) => {
-  try {
-    const response = await notionApi.get(`/pages/${pageId}`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching page:', error);
-    throw error;
-  }
-};
+// export const getPage = async (pageId) => {
+//   try {
+//     const response = await apiClient.get(`/page/${pageId}`);
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching page:', error);
+//     throw error;
+//   }
+// };

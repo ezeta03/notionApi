@@ -1,32 +1,32 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { getDatabase, getPage } from './notionApi';
+import { getDatabase } from './notionApi';
 
 function App() {
   const [database, setDatabase] = useState(null);
-  const [page, setPage] = useState(null);
+  // const [page, setPage] = useState(null);
 
   useEffect(() => {
     const fetchDatabase = async () => {
       try {
-        const data = await getDatabase('82463ff2571d4b17b42b1a01be152d13');
+        const data = await getDatabase('a1cb233eb8894147bcca9d5546a93b8d');
         setDatabase(data);
       } catch (error) {
         console.error('Error fetching database:', error);
       }
     };
 
-    const fetchPage = async () => {
-      try {
-        const data = await getPage('a1cb233eb8894147bcca9d5546a93b8d');
-        setPage(data);
-      } catch (error) {
-        console.error('Error fetching page:', error);
-      }
-    };
+    // const fetchPage = async () => {
+    //   try {
+    //     const data = await getPage('262857c79ebb46c494f5276ca477e425');
+    //     setPage(data);
+    //   } catch (error) {
+    //     console.error('Error fetching page:', error);
+    //   }
+    // };
 
     fetchDatabase();
-    fetchPage();
+    // fetchPage();
   }, []);
 
   return (
@@ -39,12 +39,12 @@ function App() {
         ) : (
           <p>Loading database...</p>
         )}
-        <h2>Page Info</h2>
+        {/* <h2>Page Info</h2>
         {page ? (
           <pre>{JSON.stringify(page, null, 2)}</pre>
         ) : (
           <p>Loading page...</p>
-        )}
+        )} */}
       </div>
     </div>
   );
